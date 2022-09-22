@@ -6,8 +6,6 @@ import {FloatingLabel, Form} from 'react-bootstrap';
 import style from '../style/mytemplate.module.css';
 function Login(props){    
     const passInput = useRef();
-
-
     const [logFlag,setLogin] = useState(false);
     const [Ip,setIp] = useState();
     const [err,setErr] = useState();
@@ -19,7 +17,6 @@ function Login(props){
         formData.append('gip',Ip);
         loginService.login(formData)
             .then(response=>{
-                console.log(response);
                 setLogin(true);
                 props.loginFun(response.data);
                 sessionStorage.setItem("sid",response.data.sid);
@@ -58,7 +55,7 @@ function Login(props){
     }
     return(
         <>
-            <h1>Login Page {Ip}</h1>
+            <h1>Login Page</h1>
             <form onSubmit={(event)=>login(event)}>
                 <FloatingLabel controlId='userLabel' label="Write your username" className='mb-3'>
                 <Form.Control type="email" name="uName" onFocus={(event)=>bgChanger(event)}  onBlur={(event)=>bgChanger(event)} placeholder="Write username" required/>

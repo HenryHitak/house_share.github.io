@@ -24,7 +24,6 @@ export default function MainApp(){
         if(sid!=null){
             userInfoSrv.loadInfo(sid)
                 .then(response=>{
-                    console.log(response);
                     setUser(response.data)
                 })
                 .catch(err=>{console.log(err)});

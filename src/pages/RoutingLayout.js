@@ -25,21 +25,21 @@ function RoutingLayout(props){
           </li>
         </ul>
       </nav>
-      <div className="setting-wrap">
-        <ul className="setting">
+      {/* <div className="setting-wrap"> */}
+        {/* <ul className="setting">
           <li className="setting-icon">
-            <i className="fa-solid fa-gear"></i>
-            <ul className="subMenu">
+            <i className="fa-solid fa-gear"></i> */}
+            {/* <ul className="subMenu">
               <li>
                 <Link to ="/">Dash Board</Link>
               </li>
               <li>
                 <Link to ="/logout">Log out</Link>
               </li>
-            </ul>
-          </li>
+            </ul> */}
+          {/* </li>
         </ul>
-      </div>
+      </div> */}
     </header>
       <Outlet/>
 
