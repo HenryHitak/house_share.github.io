@@ -4,9 +4,9 @@ function RoutingLayout(props){
   const loggedUser = props.loggedUser;
   return (
   <>
-    <header class="navFooter-header">
-        <div class="logo">
-          <h1>WHS<i class="fa-solid fa-house"></i></h1>
+    <header className="navFooter-header">
+        <div className="logo">
+          <h1>WHS<i className="fa-solid fa-house"></i></h1>
           <p>Wood Housing Solution</p>
       </div>
       <nav>
@@ -25,21 +25,21 @@ function RoutingLayout(props){
           </li>
         </ul>
       </nav>
-      <div class="setting-wrap">
-        <ul class="setting">
-          <li class="setting-icon">
-            <i class="fa-solid fa-gear"></i>
-            <ul class="subMenu">
+      {/* <div className="setting-wrap"> */}
+        {/* <ul className="setting">
+          <li className="setting-icon">
+            <i className="fa-solid fa-gear"></i> */}
+            {/* <ul className="subMenu">
               <li>
                 <Link to ="/">Dash Board</Link>
               </li>
               <li>
                 <Link to ="/logout">Log out</Link>
               </li>
-            </ul>
-          </li>
+            </ul> */}
+          {/* </li>
         </ul>
-      </div>
+      </div> */}
     </header>
       <Outlet/>
 

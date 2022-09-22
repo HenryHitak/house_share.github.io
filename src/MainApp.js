@@ -10,27 +10,26 @@ import Logout from "./pages/Logout";
 import Profile from "./pages/Profile"
 import { useEffect, useState } from 'react';
 import $, { data } from 'jquery';
+import Fileupload from './pages/Fileupload';
+import userInfoSrv from './services/userInfoSrv';
 
-export function MainApp(){
-  const[user,setUser] = useState('');
-  const loginFunction =(userInput)=> {
-    setUser(userInput);
-  }
+export default function MainApp(){
+    const [user,setUser] = useState("");
+    const loginFunction = (userInput) =>{
+        setUser(userInput);
+    };
 
-  const pageload = () =>{
-    let sid = sessionStorage.getItem("sid");
-    if(sid != null){
-      $.ajax({
-        type: "POST",
-        url: "http://localhost/react/sidChk.php",
-        data: {sid:sid},
-        success(data){
-          console.log(data);
-        }
-      })
-    }
-  }
-  useEffect(()=>pageload(),[user]);
+    const pageLoad = ()=>{
+        let sid = sessionStorage.getItem("sid");
+        if(sid!=null){
+            userInfoSrv.loadInfo(sid)
+                .then(response=>{
+                    setUser(response.data)
+                })
+                .catch(err=>{console.log(err)});
+      }
+    };
+    useEffect(()=>{pageLoad()},[user]);
   return (
     <BrowserRouter>
       <Routes>
