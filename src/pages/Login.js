@@ -1,70 +1,77 @@
-import { useState } from 'react';
- 
-function Login() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoggedin, setIsLoggedin] = useState(false);
-  
-  const login = (e) => {
-    e.preventDefault();
-    console.log(name, email, password);
-    const userData = {
-      name,
-      email,
-      password,
-    };
-    localStorage.setItem('token-info', JSON.stringify(userData));
-    setIsLoggedin(true);
-    setName('');
-    setEmail('');
-    setPassword('');
-  };
- 
-  const logout = () => {
-    localStorage.removeItem('token-info');
-    setIsLoggedin(false);
-  };
- 
-  return (
-    <>
-      <div style={{ textAlign: 'center' }}>
-        <h1>Login </h1>
-        {!isLoggedin ? (
-          <>
-            <form action="">
-              <input
-                type="text"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                placeholder="Name"
-              />
-              <input
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                placeholder="Email"
-              />
-              <input
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                placeholder="Password"
-              />
-              <button type="submit" onClick={login}>
-                GO
-              </button>
-            </form>
-          </>
-        ) : (
-          <>
-            <h1>User is logged in</h1>
-            <button onClickCapture={logout}>logout user</button>
-          </>
-        )}
-      </div>
-    </>
-  );
-}
+import {useEffect, useState, useRef} from 'react';
+import { useNavigate } from 'react-router-dom';
+import globalIP from '../services/globalIp';
+import loginService from '../services/loginService';
+import {FloatingLabel, Form} from 'react-bootstrap';
+import style from '../style/mytemplate.module.css';
+function Login(props){    
+    const passInput = useRef();
 
+
+    const [logFlag,setLogin] = useState(false);
+    const [Ip,setIp] = useState();
+    const [err,setErr] = useState();
+    const navigate = useNavigate();
+    const login = (event) =>{
+        event.preventDefault();
+        
+        const formData = new FormData(event.target);
+        formData.append('gip',Ip);
+        loginService.login(formData)
+            .then(response=>{
+                console.log(response);
+                setLogin(true);
+                props.loginFun(response.data);
+                sessionStorage.setItem("sid",response.data.sid);
+                setErr(null);
+                navigate('/');
+            })
+            .catch(err=>{
+                setErr(err.response.data);
+            });
+    }
+    useEffect(()=>{
+        globalIP.getIP().then(data=>{setIp(data)});
+    },[]);
+    const inputFocus = (event)=>{
+        if(event.target.innerText == "Show Password"){
+            passInput.current.type = "text";
+            event.target.innerText = "Hide Password";
+        }else{
+            passInput.current.type = "password";
+            event.target.innerText = "Show Password";
+        }
+    }
+    const bgChanger = (event) =>{
+        switch(event.type){
+            case "focus":
+                event.target.style.backgroundColor = "yellow";
+                break;
+            case "blur":
+                if(event.target.value==""){
+                    event.target.style.backgroundColor = "red";    
+                }else{
+                    event.target.style.backgroundColor = "white";
+                }
+                break;
+        }
+    }
+    return(
+        <>
+            <h1>Login Page {Ip}</h1>
+            <form onSubmit={(event)=>login(event)}>
+                <FloatingLabel controlId='userLabel' label="Write your username" className='mb-3'>
+                <Form.Control type="email" name="uName" onFocus={(event)=>bgChanger(event)}  onBlur={(event)=>bgChanger(event)} placeholder="Write username" required/>
+                <input type="password" name="pass" ref={passInput} placeholder="Write password" onFocus={(event)=>bgChanger(event)}  onBlur={(event)=>bgChanger(event)} required/>
+                </FloatingLabel>
+                <button type='button' onClick={(event)=>inputFocus(event)}>Show Password</button>
+                
+                
+                <button className={style.mybtn} type="submit">Login</button>
+            </form>
+            {err!==null ? <h1>{err}</h1> : null}
+        </>
+
+    )
+}
 export default Login;
