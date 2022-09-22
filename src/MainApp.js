@@ -18,7 +18,9 @@ export default function MainApp(){
     const loginFunction = (userInput) =>{
         setUser(userInput);
     };
-
+const LogoutFunction = () =>{
+        setUser('');
+    }
     const pageLoad = ()=>{
         let sid = sessionStorage.getItem("sid");
         if(sid!=null){
@@ -37,7 +39,7 @@ export default function MainApp(){
         {/* homepage replacement*/}
           <Route index element = {<Yourpost loggedUser={user}/>}/>
           <Route path="login" element = { <Login loginFun={loginFunction}/>}/>
-          <Route path="logout" element = {<Logout loggedUser={user} loginFun={loginFunction}/>}/>
+          <Route path="logout" element = {<Logout loggedUser={user} LogoutFun={LogoutFunction}/>}/>
           <Route path="profile" element = { <Profile loginFun={loginFunction}/>}/>
           <Route path="register" element = {<Register loggedUser={user}/>}/>
           <Route path="showpost" element = {<Showpost loggedUser={user}/>}/>
