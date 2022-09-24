@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import HttpCommon from "../services/Http-common";
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Tables(props){
   const post = props.post; 
+  const index = props.number;
   return(
-    <aside>
+      <aside>
         <figure>
-          <img src ='#'/>
+          <img src ='#' alt='img'/>
           {/* <img src ='../img/post_img/'{post.imgName}''/> */}
         </figure>
         <div>
@@ -15,7 +17,11 @@ function Tables(props){
           <time>{post.p_date}</time>
           <p>{post.postContent}</p>
         </div>
-    </aside>
+        <form >
+          <button type="submit" onClick={()=>props.postdetail(index)}>Detail</button>
+        </form>
+      </aside>
+
   )
 }
 
@@ -29,11 +35,15 @@ function Showpost(){
     })
     .catch(err=>{console.log(err)});
 
+  const postDetail =(idx)=>{
+    setPostlist(postList[idx]);
+  }
+
   return(
     <>
       <article>
         {postList.map((val,idx)=>{
-          < Tables key={idx} post={val} />
+          < Tables key={idx} post={val} postdetail = {postDetail}/>
         })}
       </article>
     </>
