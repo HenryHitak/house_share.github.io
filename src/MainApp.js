@@ -12,15 +12,17 @@ import { useEffect, useState } from 'react';
 import $, { data } from 'jquery';
 import Fileupload from './pages/Fileupload';
 import userInfoSrv from './services/userInfoSrv';
+import { useNavigate } from 'react-router-dom';
 
 export default function MainApp(){
     const [user,setUser] = useState("");
     const loginFunction = (userInput) =>{
         setUser(userInput);
     };
-const LogoutFunction = () =>{
-        setUser('');
-    }
+
+    const logoutFunction = () =>{
+      setUser('');
+  }
     const pageLoad = ()=>{
         let sid = sessionStorage.getItem("sid");
         if(sid!=null){
@@ -39,8 +41,8 @@ const LogoutFunction = () =>{
         {/* homepage replacement*/}
           <Route index element = {<Yourpost loggedUser={user}/>}/>
           <Route path="login" element = { <Login loginFun={loginFunction}/>}/>
-          <Route path="logout" element = {<Logout loggedUser={user} LogoutFun={LogoutFunction}/>}/>
-          <Route path="profile" element = { <Profile loginFun={loginFunction}/>}/>
+          <Route path="logout" element = {<Logout loggedUser={user} logoutFun={logoutFunction}/>}/>
+          <Route path="profile" element = { <Profile loggedUser={user} />}/>
           <Route path="register" element = {<Register loggedUser={user}/>}/>
           <Route path="showpost" element = {<Showpost loggedUser={user}/>}/>
           <Route path="findpost" element = {<Findpost loggedUser={user}/>}/>
