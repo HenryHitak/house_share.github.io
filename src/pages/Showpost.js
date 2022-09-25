@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import HttpCommon from "../services/Http-common";
+import HttpCommon from "../services/http-common";
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 function Tables(props){
   const post = props.post; 
@@ -43,7 +42,7 @@ function Showpost(){
     <>
       <article>
         {postList.map((val,idx)=>{
-          < Tables key={idx} post={val} postdetail = {postDetail}/>
+          < Tables key={idx} post={val} />
         })}
       </article>
     </>
