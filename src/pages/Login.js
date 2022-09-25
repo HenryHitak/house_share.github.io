@@ -1,6 +1,6 @@
 import {useEffect, useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
-import globalIP from '../services/GlobalIp';
+import globalIP from '../services/globalIp';
 import loginService from '../services/loginService';
 import {FloatingLabel, Form} from 'react-bootstrap';
 import style from '../style/mytemplate.module.css';

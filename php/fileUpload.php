@@ -1,5 +1,5 @@
 <?php
-    header("Access-Control-Allow-Origin: http://localhost:3000");
+    include './config.php';
     header("Access-Control-Allow-Methods: PUT, GET, POST");
     function chk_file($directory){
         if(file_exists($directory)){
