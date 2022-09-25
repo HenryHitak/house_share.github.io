@@ -30,6 +30,35 @@ function Tables(props){
 
 function Showpost(){
   const[postList,setPostlist] = useState([]);
+  HttpCommon.post('/showpost.php')
+    .then(response =>{
+      // console.log(response);
+      setPostlist(response.data);
+      //  console.log(postList[4]);
+    })
+    .catch(err=>{console.log(err)});
+
+  const postDetail =(idx)=>{
+    setPostlist(postList[idx]);
+  }
+
+  return(
+    <>
+      <article>
+        {postList.map((val,idx)=>{
+          < Tables key={idx} post={val} postdetail = {postDetail}/>
+        })}
+      </article>
+    </>
+  )
+}
+
+
+  )
+}
+
+function Showpost(){
+  const[postList,setPostlist] = useState([]);
   HttpCommon.post('/fileupload.php')
     .then(response =>{
       console.log(response);
