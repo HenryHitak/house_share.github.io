@@ -9,7 +9,11 @@ function RoutingLayout(props){
           <h1>WHS<i className="fa-solid fa-house"></i></h1>
           <p>Wood Housing Solution</p>
       </div>
+      { loggedUser =="" ? (
+       <Link to="/login">Login</Link>
+      ) : (
       <nav>
+        <Link to="/logout">Logout</Link>
         <ul>
           <li>
             <Link to="/">Yourpost</Link>
@@ -21,23 +25,24 @@ function RoutingLayout(props){
             <Link to="/profile">Your profile</Link>
           </li>
           <li>
-          { loggedUser ==="" ? <Link to="/login">Login</Link> : <Link to="/logout">Logout</Link>}
+            <Link to="/showpost">Posts</Link>
           </li>
         </ul>
-      </nav>
-      {/* <div className="setting-wrap"> */}
-        {/* <ul className="setting">
+      </nav>      
+      )}
+      {/* <div className="setting-wrap">
+        <ul className="setting">
           <li className="setting-icon">
-            <i className="fa-solid fa-gear"></i> */}
-            {/* <ul className="subMenu">
+            <i className="fa-solid fa-gear"></i>
+            <ul className="subMenu">
               <li>
                 <Link to ="/">Dash Board</Link>
               </li>
               <li>
                 <Link to ="/logout">Log out</Link>
               </li>
-            </ul> */}
-          {/* </li>
+            </ul>
+          </li>
         </ul>
       </div> */}
     </header>
