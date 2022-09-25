@@ -15,7 +15,8 @@ function RoutingLayout(props){
             <Link to="/">Yourpost</Link>
           </li>
           <li>
-            <Link to="/findpost">Find Share house</Link>
+            <Link to="/showpost">Find Share house</Link>
+            {/* showpost == findpost */}
           </li>
           <li>
             <Link to="/profile">Your profile</Link>
