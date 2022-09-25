@@ -22,4 +22,6 @@
         echo json_encode($postArray);
       }
   }
+
 ?>
+
