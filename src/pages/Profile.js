@@ -3,6 +3,9 @@ import { useState, useRef } from "react";
 import Commentpost from "./Commentpost";
 import { v4 as uuidv4 } from "uuid";//This is for applying unique Id to comment
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import  { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
 function Profile() {
 
   // COMMENT SECTION START
@@ -42,7 +45,7 @@ function Profile() {
         <textarea className="CommentTextarea" ref={contentRef} />
         <div className="CommentBtnWrap">
           <button className="commentBtnSend" onClick={handleAddComment}>Send</button>
-          <button className="commentBtnDelete" onClick={handleClear}>Delete</button>
+          <button className="commentBtnDelete" onClick={handleClear}><FontAwesomeIcon icon={faTrashCan} />Delete selected comment</button>
         </div>
       </div>
       <Commentpost comments={comments} toggleDelete={toggleDelete} />

@@ -8,10 +8,10 @@ function RoutingLayout(props){
     <header className="navFooter-header">
         <div className="logo">
           <h1 className="whs">WHS<FontAwesomeIcon icon={faHouse} /></h1>
-          <p>Wood Housing Solution</p>
+          <p className="ptagWhs">Wood Housing Solution</p>
       </div>
       { loggedUser =="" ? (
-       <Link to="/login" className="login">Login</Link>
+       <Link to="/login" className="loginOnNav">Login</Link>
       ) : (
       <nav>
         <Link to="/logout">Logout</Link>

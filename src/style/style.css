@@ -7,6 +7,7 @@
 
 body {
   margin: 0;
+  padding: 0;
 }
 
 html {
@@ -32,13 +33,17 @@ html {
   /* padding-top: 5px; */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.18);
   width: 100%;
-
 }
-
 
 .whs {
   font-size: 36px;
   font-weight: 600;
+  color: #4EA1A5;
+}
+
+.ptagWhs {
+  color: #888888;
+  font-size: 12px;
 }
 
 .logo {
@@ -46,39 +51,30 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #4EA1A5;
-  font-size: 40px;
-  padding-left: 5px;
-  padding: 10px;
-
 }
 
-.logo>p {
-  color: #888888;
-  font-size: 12px;
-}
-
-.logo>h1 {
-  color: #4EA1A5;
-
-}
-
-.login {
+.loginOnNav {
   font-size: 20px;
   width: 100px;
   text-align: center;
-  font-weight: 500;
-  color: #fff;
-  background-color: #4EA1A5;
+  font-weight: 600;
+  color:  #4EA1A5;
+  background-color: #fff;
   padding: 10px;
   border-radius: 5px;
   text-decoration: none;
   margin-right: 50px;
 }
 
-.login:hover {
+.loginOnNav:hover {
+  color:  #67b6ba; 
+  transition: 0.3s;
+}
+
+/* blue button hover */
+.LoginFormBtn:hover, .commentBtnSend:hover {
   color: #fff;
-  transition: 0.5s;
+  transition: 0.3s;
   background-color: #67b6ba;
 }
 
@@ -90,93 +86,6 @@ html {
   width: 70%;
   height: 90px;
 
-}
-
-/* LOGIN USER NAME */
-.hello {
-  font-size: 12Px;
-  color: #888888;
-}
-
-/* SETTING ICON */
-.setting-icon i {
-  font-size: 18px;
-  color: #888888;
-}
-
-.navMenu {
-  display: flex;
-}
-
-.navMenu li {
-  list-style: none;
-}
-
-/* MAIN MANU */
-.navMenu li>a {
-  display: block;
-  text-decoration: none;
-  color: #333333;
-  font-weight: 700;
-  margin-right: 35px;
-}
-
-.navMenu li>a:hover {
-  color: #4EA1A5;
-  transition: 0.2s;
-}
-
-
-/* SETTING ICON*/
-.subMenu {
-  display: none;
-  width: 145px;
-}
-
-.setting-icon {
-  list-style: none;
-}
-
-.setting-icon>a {
-  padding: 12px 20px;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-/* SETTING ICON HOVER*/
-.setting-icon:hover .subMenu {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  left: 90%;
-}
-
-.subMenu {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  border-radius: 5px;
-  background-color: #ffffff;
-  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.18);
-  border: 1px solid #D9D9D9;
-  width: 110px;
-}
-
-.subMenu>li {
-  display: block;
-  font-size: 14px;
-  padding: 5px 10px;
-  width: 100%;
-}
-
-.subMenu>li>a {
-  color: #555555;
-  width: 100%;
-  text-decoration: none;
-}
-
-.subMenu>li>a:hover {
-  color: #555555a8;
 }
 
 
@@ -260,9 +169,7 @@ footer {
   cursor: pointer;
 }
 
-.LoginFormBtn:hover {
-  background-color: #67b6ba;
-}
+
 
 .loginFormPass {
   height: 20px;
@@ -280,19 +187,15 @@ footer {
 .CommentWrap {
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 300px;
   row-gap: 10px;
   margin-top: 150px;
   margin-left: 100px;
 }
 
-
-
-
-
 .CommentTextarea {
   height: 100px;
-  width: 300px;
+  width: 100%;
   padding: 10px;
   font-size: 18px;
   color: #333;
@@ -301,7 +204,9 @@ footer {
 .CommentBtnWrap {
   display: flex;
   column-gap: 10px;
+  width: 300px;
   padding-bottom: 50px;
+  justify-content: space-between;
 }
 
 .commentBtnSend {
@@ -316,18 +221,24 @@ footer {
 
 .commentBtnDelete {
   height: 30px;
-  width: 100px;
+  width: auto;
   background-color: #fff;
   color: #e16e40;
   border-radius: 5px;
-  border: 1px solid #e16e40;
+  border: none;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  align-items: center;
+ 
 }
 
+
+
 .commentBtnDelete:hover {
-  background-color: #e16e40;
-  color: #fff;
-  transition: 0.2s;
+  color: #ef8f6a;;
+  transition: 0.3s;
 }
 
 .postedComment {
@@ -365,6 +276,6 @@ footer {
 }
 
 .commentDateWrap {
- display: flex;
- justify-content: end;
+  display: flex;
+  justify-content: end;
 }

@@ -2,7 +2,7 @@ import HttpCommon from "../services/http-common";
 import { Link } from 'react-router-dom';
 import react, { useState, useEffect } from "react";
 import React, { Component } from 'react';
-import '../App.css';
+
 import SingleImageUploadComponent from '../components/single-image-upload.component';
 import MultipleImageUploadComponent from '../components/multiple-image-upload.component';
 
