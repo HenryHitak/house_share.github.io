@@ -28,7 +28,7 @@ function RoutingLayout(props){
           </li>
         </ul>
       </nav>      
-      {/* <div className="setting-wrap">
+      <div className="setting-wrap">
         <ul className="setting">
           <li className="setting-icon">
             <i className="fa-solid fa-gear"></i>
@@ -42,7 +42,7 @@ function RoutingLayout(props){
             </ul>
           </li>
         </ul>
-      </div> */}
+      </div>
     </header>
       <Outlet/>
 

@@ -48,7 +48,7 @@ function Showpost(){
         <h1 className="show-h1">post detail</h1>
         {postList.map((val,idx)=>{
           return(
-              < Tables key={idx} post={val} postdetail={postDetail} />
+              < Tables key={idx} post={val} postdetail={()=>postDetail()} />
           )
         })}
       </article>
