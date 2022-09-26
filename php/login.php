@@ -1,11 +1,10 @@
 <?php
-    header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin:http://localhost:3000");
+
+
+    include './config.php';
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         session_start();
-        $dbUsername = "root";
-        $dbServername = "localhost";
-        $dbPass = "";
-        $dbName = "final_db";
         $username = $_POST['uName'];
         $pass = $_POST['pass'];
         $IP = $_POST['gip'];
@@ -14,7 +13,7 @@
                 echo "Invalid Email";
             }
             else{
-                $dbcon = new mysqli($dbServername, $dbUsername, $dbPass, $dbName);
+                $dbcon = new mysqli($dbServerName, $dbUserName, $dbPass, $dbName);
                 if($dbcon -> connect_error){
                     die("Error connection");
                 }else{

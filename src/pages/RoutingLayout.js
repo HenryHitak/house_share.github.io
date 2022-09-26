@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 
+
 function RoutingLayout(props){
   const loggedUser = props.loggedUser;
   return (
@@ -9,28 +10,25 @@ function RoutingLayout(props){
           <h1>WHS<i className="fa-solid fa-house"></i></h1>
           <p>Wood Housing Solution</p>
       </div>
+      <nav className="navFooter-nav">
+      <ul className="navMenu">
       { loggedUser =="" ? (
-       <Link to="/login">Login</Link>
+       <li><Link to="/">Login</Link></li>
       ) : (
-      <nav>
-        <Link to="/logout">Logout</Link>
-        <ul>
+        <li><Link to="/logout">Logout</Link></li> )}
           <li>
-            <Link to="/">Yourpost</Link>
+            <Link to="/yourpost">Yourpost</Link>
           </li>
           <li>
-            <Link to="/findpost">Find Share house</Link>
+            <Link to="/showpost">Find Share house</Link>
+            {/* showpost == findpost */}
           </li>
           <li>
             <Link to="/profile">Your profile</Link>
           </li>
-          <li>
-            <Link to="/showpost">Posts</Link>
-          </li>
         </ul>
       </nav>      
-      )}
-      {/* <div className="setting-wrap">
+      <div className="setting-wrap">
         <ul className="setting">
           <li className="setting-icon">
             <i className="fa-solid fa-gear"></i>
@@ -44,7 +42,7 @@ function RoutingLayout(props){
             </ul>
           </li>
         </ul>
-      </div> */}
+      </div>
     </header>
       <Outlet/>
 

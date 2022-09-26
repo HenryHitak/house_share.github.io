@@ -1,26 +1,26 @@
 <?php
 $dbUserName = "root";
 $dbServerName = "localhost";
-$dbpass = "";
-$dbname = "final_db"; 
+$dbPass = "";
+$dbName = "final_db"; 
 
 header("Access-Control-Allow-Origin:http://localhost:3000");
-  $dbCon = new mysqli($dbServername,$dbUsername,$dbPass,$dbname);
-  if($dbCon->connect_error){
-    die('connection error');
-  }else{
-      $postArray = [];
-      $postCmd = "SELECT * FROM post_tb";
-      $result = $dbCon->query($postCmd);
-      if($result->num_rows > 0){
-        $postData = $result->fetch_assoc();
-        while($row = $result->fetch_assoc()){
-          array_push($postArray,$row);
-        }
+  // $dbCon = new mysqli($dbServername,$dbUsername,$dbPass,$dbname);
+  // if($dbCon->connect_error){
+  //   die('connection error');
+  // }else{
+  //     $postArray = [];
+  //     $postCmd = "SELECT * FROM post_tb";
+  //     $result = $dbCon->query($postCmd);
+  //     if($result->num_rows > 0){
+  //       $postData = $result->fetch_assoc();
+  //       while($row = $result->fetch_assoc()){
+  //         array_push($postArray,$row);
+  //       }
 
-        echo json_encode($postArray);
-      }
-  }
+  //       echo json_encode($postArray);
+  //     }
+  // }
 ?>
 
 
