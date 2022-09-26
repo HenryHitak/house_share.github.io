@@ -2,18 +2,20 @@
     header("Access-Control-Allow-Origin: http://localhost:3000");
 
     include './config.php';
-    if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['sid'])){
+    $dbCon = new mysqli($dbServerName,$dbUserName,$dbPass,$dbName);
+    if($dbCon->connect_error){
+      die('connection error');
+    }else{
+      if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['sid'])){
         session_id($_POST['sid']);
         session_start();
         $user = $_SESSION['user'];
-
         $email = $user['email'];
         $logCmd = "SELECT * FROM user_tb WHERE email='$email'";
         $useresult = $dbCon->query($logCmd);
-        if($useresult->num_rows > 0){
-          $user = $useresult->fetch_assoc();
-        }
-    
+          if($useresult->num_rows > 0){
+            $user = $useresult->fetch_assoc();
+           }
         $postArray = [];
         $userid = $user['user_id'];
         $postCmd = "SELECT * FROM post_tb WHERE user_id = '$userid'";
@@ -21,10 +23,12 @@
         while($row = $result->fetch_assoc()){
           array_push($postArray,$row);
         }
-
-        echo $postArray;
+        echo json_encode($postArray);
         $dbCon->close();
     }else{
-      echo "you haven't logged in";
+      $dbCon->close();
+      header("status-Text: You haven't logged in",true,401);
+      echo "You haven't logged in";
     }
+  }
 ?>

@@ -13,11 +13,11 @@ function RoutingLayout(props){
       <nav className="navFooter-nav">
       <ul className="navMenu">
       { loggedUser =="" ? (
-       <li><Link to="/login">Login</Link></li>
+       <li><Link to="/">Login</Link></li>
       ) : (
         <li><Link to="/logout">Logout</Link></li> )}
           <li>
-            <Link to="/">Yourpost</Link>
+            <Link to="/yourpost">Yourpost</Link>
           </li>
           <li>
             <Link to="/showpost">Find Share house</Link>

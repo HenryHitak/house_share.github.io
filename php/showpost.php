@@ -6,7 +6,7 @@
   //   header("Location: http://localhost/fproject/pages/loginCon.php");
   // }
 
-  $dbCon = new mysqli($dbServerName,$dbUserName,$dbpass,$dbname);
+  $dbCon = new mysqli($dbServerName,$dbUserName,$dbPass,$dbName);
   if($dbCon->connect_error){
     die('connection error');
   }else{

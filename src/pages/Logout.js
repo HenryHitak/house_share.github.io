@@ -3,6 +3,6 @@ function Logout(props){
     props.logoutFun();
     const navigate = useNavigate();
     sessionStorage.removeItem("sid");
-    navigate('/login');
+    navigate('/');
 }
 export default Logout;

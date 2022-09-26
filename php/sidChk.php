@@ -5,7 +5,6 @@
         session_id($_POST['sid']);
         session_start();
         $user = $_SESSION['user'];
-        // echo $user['firstName']." Welcome";
         echo json_encode($user);
     }
 ?>

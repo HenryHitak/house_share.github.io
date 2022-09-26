@@ -1,8 +1,8 @@
 <?php
 $dbUserName = "root";
 $dbServerName = "localhost";
-$dbpass = "";
-$dbname = "final_db"; 
+$dbPass = "";
+$dbName = "final_db"; 
 
 header("Access-Control-Allow-Origin:http://localhost:3000");
   // $dbCon = new mysqli($dbServername,$dbUsername,$dbPass,$dbname);

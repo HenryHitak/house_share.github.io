@@ -14,22 +14,26 @@ function Login(props){
         event.preventDefault();
         
         const formData = new FormData(event.target);
+        console.log(Ip);
         formData.append('gip',Ip);
         loginService.login(formData)
             .then(response=>{
                 setLogin(true);
                 props.loginFun(response.data);
+                console.log(response.data)
                 sessionStorage.setItem("sid",response.data.sid);
                 setErr(null);
-                navigate('/');
+                // navigate('/yourpost');
             })
             .catch(err=>{
                 setErr(err.response.data);
             });
     }
+
     useEffect(()=>{
         globalIP.getIP().then(data=>{setIp(data)});
     },[]);
+
     const inputFocus = (event)=>{
         if(event.target.innerText == "Show Password"){
             passInput.current.type = "text";
