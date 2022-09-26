@@ -39,9 +39,10 @@ function Profile() {
 
   return (
     <>
+ 
       {/* COMMENT SECTION START */}
       <div className="CommentWrap">
-        <h3 className="CommentTitle">Commnet</h3>
+        <h3 className="CommentTitle">Comment</h3>
         <textarea className="CommentTextarea" ref={contentRef} />
         <div className="CommentBtnWrap">
           <button className="commentBtnSend" onClick={handleAddComment}>Send</button>
@@ -50,6 +51,8 @@ function Profile() {
       </div>
       <Commentpost comments={comments} toggleDelete={toggleDelete} />
       {/* COMMENT SECTION END */}
+
+ 
     </>
 
   );
