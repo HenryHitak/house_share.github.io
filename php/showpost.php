@@ -1,12 +1,13 @@
 <?php
   header("Access-Control-Allow-Origin: http://localhost:3000");
   include './config.php';
+  header("Access-Control-Allow-Origin:http://localhost:3000");
 
   // if($_SESSION['timeout'] < time()){
   //   header("Location: http://localhost/fproject/pages/loginCon.php");
   // }
 
-  $dbCon = new mysqli($dbServername,$dbUsername,$dbPass,$dbname);
+  $dbCon = new mysqli($dbServerName,$dbUserName,$dbPass,$dbName);
   if($dbCon->connect_error){
     die('connection error');
   }else{
@@ -22,4 +23,6 @@
         echo json_encode($postArray);
       }
   }
+
 ?>
+

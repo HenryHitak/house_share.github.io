@@ -17,9 +17,11 @@ import "./App.css";
 import axios from "axios";
 import Table from "./pages/Table";
 export default function MainApp(){
-    const [user,setUser] = useState("");
+    const [user,setUser] = useState('');
+    //change
     const loginFunction = (userInput) =>{
         setUser(userInput);
+        console.log(user);
     };
 
     const logoutFunction = () =>{
@@ -49,23 +51,26 @@ export default function MainApp(){
 
     const pageLoad = ()=>{
         let sid = sessionStorage.getItem("sid");
+        // console.log(sid);
         if(sid!=null){
             userInfoSrv.loadInfo(sid)
                 .then(response=>{
-                    setUser(response.data)
+                    setUser(response.data);
+                    // console.log(user);
                 })
                 .catch(err=>{console.log(err)});
       }
     };
     useEffect(()=>{pageLoad()},[user]);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<RoutingLayout loggedUser={user}/>}>
         <Route path="/signup" element={<Register/>} />
         {/* homepage replacement*/}
-          <Route index element = {<Yourpost loggedUser={user}/>}/>
-          <Route path="login" element = { <Login loginFun={loginFunction}/>}/>
+          <Route  index  element = { <Login loginFun={loginFunction}/>}/>
+          <Route path="yourpost" element={<Yourpost loggedUser={user}/>}/>
           <Route path="logout" element = {<Logout loggedUser={user} logoutFun={logoutFunction}/>}/>
           <Route path="profile" element = { <Profile loggedUser={user} />}/>
           <Route path="register" element = {<Register loggedUser={user}/>}/>

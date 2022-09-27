@@ -10,19 +10,19 @@ function Tables(props){
   const post = props.post; 
   const index = props.number;
   return(
-      <aside>
-        <figure>
-          <img src ='#' alt='img'/>
+      <aside className="show-aside">
+        <figure className="show-fig">
+          <img className="showimg" src ='#' alt='img'/>
           {/* <img src ='../img/post_img/'{post.imgName}''/> */}
         </figure>
-        <div>
-          <h1>{post.title}</h1>
-          <time>{post.p_date}</time>
-          <p>{post.postContent}</p>
-        </div>
-        <form >
-          <button type="submit" onClick={()=>props.postdetail(index)}>Detail</button>
+        <div className="showcontent">
+          <h1 className="show-h1">{post.title}</h1>
+          <time className="showtime">{post.p_date}</time>
+          <p className="showp">{post.postContent}</p>
+        <form className="showform">
+          <button className="showbutton" type="submit" onClick={()=>props.postdetail(index)}> See Detail</button>
         </form>
+        </div>
       </aside>
 
   )
@@ -39,13 +39,16 @@ function Showpost(){
     .then(response =>{
       // console.log(response);
       setPostlist(response.data);
+      // console.log(response.data[0]);
+      // console.log(postList[4]);
     })
     .catch(err=>{console.log(err)});
 
   const postDetail =(idx)=>{
     setPostlist(postList[idx]);
   }
-    return (
+
+  return(
     <>
     <div>
       <input type="text" placeholder="Search" className="search"></input>
@@ -70,10 +73,52 @@ function Showpost(){
       </div>
       {/* <article>
         {postList.map((val,idx)=>{
-          < Tables key={idx} post={val} postdetail = {postDetail}/>
+          return(
+              < Tables key={idx} post={val} postdetail={()=>postDetail()} />
+          )
         })}
-      </article> */}
+      </article>
     </>
-        );
+  )
+}
+
+
+
+
+// function Showpost(){
+//   const[postList,setPostlist] = useState([]);
+//   HttpCommon.post('/fileupload.php')
+//     .then(response =>{
+//       console.log(response);
+//       setPostlist(response.data);
+//     })
+//     .catch(err=>{console.log(err)});
+
+//   const postDetail =(idx)=>{
+//     setPostlist(postList[idx]);
+//   }
+//     return (
+//     <>
+//       <div className="container">
+//         <div className="row">
+//           <div className="col-md-6">
+//             <div className="card">
+//               <div className="card-header">
+//                 Multiple Image Upload Preview
+//               </div>
+//               <div className="card-body">
+//                 <MultipleImageUploadComponent />
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//       {/* <article>
+//         {postList.map((val,idx)=>{
+//           < Tables key={idx} post={val} postdetail = {postDetail}/>
+//         })}
+//       </article> */}  
+</>
+ );
 }
 export default Showpost;
