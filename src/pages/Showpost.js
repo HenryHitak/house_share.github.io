@@ -1,6 +1,6 @@
 import HttpCommon from "../services/http-common";
 import { Link } from 'react-router-dom';
-import react, { useState, useEffect } from "react";
+import {useEffect, useState, useRef} from 'react';
 import React, { Component } from 'react';
 import '../App.css';
 import SingleImageUploadComponent from '../components/single-image-upload.component';
@@ -30,9 +30,14 @@ function Tables(props){
 
 function Showpost(){
   const[postList,setPostlist] = useState([]);
+  useEffect(()=>{
+        fetch('http://localhost/php/showpost.php')
+        .then((response)=>response.json())
+        .then((data)=> setPostlist(data));
+    },[postList]);
   HttpCommon.post('/fileupload.php')
     .then(response =>{
-      console.log(response);
+      // console.log(response);
       setPostlist(response.data);
     })
     .catch(err=>{console.log(err)});
@@ -42,6 +47,13 @@ function Showpost(){
   }
     return (
     <>
+    <div>
+      <input type="text" placeholder="Search" className="search"></input>
+      {/* <button type="button" className="search" onClick={(event)=>Tables(event)>Click to Search</button> */}
+      <ul className="list">
+        {}
+      </ul>
+    </div>
       <div className="container">
         <div className="row">
           <div className="col-md-6">

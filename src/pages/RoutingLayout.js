@@ -10,7 +10,10 @@ function RoutingLayout(props){
           <p>Wood Housing Solution</p>
       </div>
       { loggedUser =="" ? (
-       <Link to="/login">Login</Link>
+        <>        
+        <Link to="/login">Login</Link>
+        <Link to="/register">Signup</Link>
+        </>
       ) : (
       <nav>
         <Link to="/logout">Logout</Link>

@@ -13,7 +13,9 @@ import $, { data } from 'jquery';
 import Fileupload from './pages/Fileupload';
 import userInfoSrv from './services/userInfoSrv';
 import { useNavigate } from 'react-router-dom';
-
+import "./App.css";
+import axios from "axios";
+import Table from "./pages/Table";
 export default function MainApp(){
     const [user,setUser] = useState("");
     const loginFunction = (userInput) =>{
@@ -23,6 +25,28 @@ export default function MainApp(){
     const logoutFunction = () =>{
       setUser('');
   }
+  // const [query, setQuery] = useState("");
+  // const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const res = await axios.get(`http://localhost:3000?q=${query}`);
+  //     setData(res.data);
+  //   };
+  //   if (query.length === 0 || query.length > 2) fetchData();
+  // }, [query]);
+
+  // return (
+  //   <div className="app">
+  //       <input
+  //         className="search"
+  //         placeholder="Search..."
+  //         onChange={(e) => setQuery(e.target.value.toLowerCase())}
+  //       />
+  //     {<Table data={data} />}
+  //   </div>
+  // );
+
     const pageLoad = ()=>{
         let sid = sessionStorage.getItem("sid");
         if(sid!=null){
@@ -38,6 +62,7 @@ export default function MainApp(){
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<RoutingLayout loggedUser={user}/>}>
+        <Route path="/signup" element={<Register/>} />
         {/* homepage replacement*/}
           <Route index element = {<Yourpost loggedUser={user}/>}/>
           <Route path="login" element = { <Login loginFun={loginFunction}/>}/>

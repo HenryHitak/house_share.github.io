@@ -1,4 +1,5 @@
 <?php
+  header("Access-Control-Allow-Origin: http://localhost:3000");
   include './config.php';
 
   // if($_SESSION['timeout'] < time()){

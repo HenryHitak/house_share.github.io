@@ -62,8 +62,6 @@ function Login(props){
                 <input type="password" name="pass" ref={passInput} placeholder="Write password" onFocus={(event)=>bgChanger(event)}  onBlur={(event)=>bgChanger(event)} required/>
                 </FloatingLabel>
                 <button type='button' onClick={(event)=>inputFocus(event)}>Show Password</button>
-                
-                
                 <button className={style.mybtn} type="submit">Login</button>
             </form>
             {err!==null ? <h1>{err}</h1> : null}
