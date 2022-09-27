@@ -1,6 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
 
-
 function RoutingLayout(props){
   const loggedUser = props.loggedUser;
   return (
@@ -14,11 +13,12 @@ function RoutingLayout(props){
       <ul className="navMenu">
       { loggedUser =="" ? (
         <>        
-        <Link to="/login">Login</Link>
-        <Link to="/register">Signup</Link>
+        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/register">Signup</Link></li>
         </>
       ) : (
-        <li><Link to="/logout">Logout</Link></li> )}
+        <>
+        <li><Link to="/logout">Logout</Link></li> 
           <li>
             <Link to="/yourpost">Yourpost</Link>
           </li>
@@ -29,23 +29,9 @@ function RoutingLayout(props){
           <li>
             <Link to="/profile">Your profile</Link>
           </li>
+          </>)}
         </ul>
       </nav>      
-      <div className="setting-wrap">
-        <ul className="setting">
-          <li className="setting-icon">
-            <i className="fa-solid fa-gear"></i>
-            <ul className="subMenu">
-              <li>
-                <Link to ="/">Dash Board</Link>
-              </li>
-              <li>
-                <Link to ="/logout">Log out</Link>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
     </header>
       <Outlet/>
 

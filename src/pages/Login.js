@@ -4,6 +4,7 @@ import globalIP from '../services/globalIp';
 import loginService from '../services/loginService';
 import {FloatingLabel, Form} from 'react-bootstrap';
 import style from '../style/mytemplate.module.css';
+import axios from 'axios';
 function Login(props){    
     const passInput = useRef();
     const [logFlag,setLogin] = useState(false);
@@ -23,7 +24,7 @@ function Login(props){
                 console.log(response.data)
                 sessionStorage.setItem("sid",response.data.sid);
                 setErr(null);
-                // navigate('/yourpost');
+                navigate('/yourpost');
             })
             .catch(err=>{
                 setErr(err.response.data);

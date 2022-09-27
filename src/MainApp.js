@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import Nopage from "./pages/Nopage";
 import Register from "./pages/Register";
 import Logout from "./pages/Logout";
-import Profile from "./pages/Profile"
+import Profile from "./pages/Profile";
 import { useEffect, useState } from 'react';
 import $, { data } from 'jquery';
 import Fileupload from './pages/Fileupload';
@@ -24,7 +24,7 @@ export default function MainApp(){
         console.log(user);
     };
 
-    const logoutFunction = () =>{
+    const logoutFunction = (userInput) =>{
       setUser('');
   }
   // const [query, setQuery] = useState("");
@@ -67,10 +67,11 @@ export default function MainApp(){
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<RoutingLayout loggedUser={user}/>}>
-        <Route path="/signup" element={<Register/>} />
         {/* homepage replacement*/}
           <Route  index  element = { <Login loginFun={loginFunction}/>}/>
+          <Route path="register" element={<Register/>} />
           <Route path="yourpost" element={<Yourpost loggedUser={user}/>}/>
+          <Route path="login" element = {<Login loginFun={logoutFunction}/>}/>
           <Route path="logout" element = {<Logout loggedUser={user} logoutFun={logoutFunction}/>}/>
           <Route path="profile" element = { <Profile loggedUser={user} />}/>
           <Route path="register" element = {<Register loggedUser={user}/>}/>

@@ -1,31 +1,27 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import Table from "./Table";
+import HttpCommon from "../services/http-common";
+import { useState} from "react";
+import YourInfoSrv from "../services/yourinfo";
 
-// home page replacement
-function Yourpost(){
-  const [query, setQuery] = useState("");
-  const [data, setData] = useState([]);
+function Tables(props){
+  const post = props.post; 
+  return(
+      <aside className="show-aside">
+        <figure className="show-fig">
+          <img className="showimg" src ='#' alt='img'/>
+          {/* <img src ='../img/post_img/'{post.imgName}''/> */}
+        </figure>
+        <div className="showcontent">
+          <h1 className="show-h1">{post.title}</h1>
+          <time className="showtime">{post.p_date}</time>
+          <p className="showp">{post.postContent}</p>
+        {/* <form className="showform">
+          <button className="showbutton" type="submit" onClick={()=>props.postdetail(index)}> See Detail</button>
+        </form> */}
+        </div>
+      </aside>
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get(`http://localhost:3000?q=${query}`);
-      setData(res.data);
-    };
-    if (query.length === 0 || query.length > 2) fetchData();
-  }, [query]);
-
-  return (
-    <div className="app">
-        <input
-          className="search"
-          placeholder="Search..."
-          onChange={(e) => setQuery(e.target.value.toLowerCase())}
-        />
-      {/* {<Table data={data} />} */}
-    </div>
-  );
-  }
+  )
+}
 
 function Yourpost(props){
   const[postList,setPostlist] = useState([]);
