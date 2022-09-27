@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import  { faHouse } from "@fortawesome/free-solid-svg-icons";
 
 function RoutingLayout(props){
   const loggedUser = props.loggedUser;
@@ -7,28 +8,32 @@ function RoutingLayout(props){
   <>
     <header className="navFooter-header">
         <div className="logo">
-          <h1>WHS<i className="fa-solid fa-house"></i></h1>
-          <p>Wood Housing Solution</p>
+          <h1 className="whs">WHS<FontAwesomeIcon icon={faHouse} /></h1>
+          <p className="ptagWhs">Wood Housing Solution</p>
       </div>
-      <nav className="navFooter-nav">
-      <ul className="navMenu">
       { loggedUser =="" ? (
-       <li><Link to="/">Login</Link></li>
+       <Link to="/login" className="loginOnNav">Login</Link>
       ) : (
-        <li><Link to="/logout">Logout</Link></li> )}
+      <nav className="loggedInNav">
+      
+        <ul>
           <li>
-            <Link to="/yourpost">Yourpost</Link>
+            <Link className="yourPostOnNav" to="/yourpost">Yourpost</Link>
           </li>
           <li>
-            <Link to="/showpost">Find Share house</Link>
-            {/* showpost == findpost */}
+            <Link className="findPostOnNav" to="/findpost">Find Share house</Link>
           </li>
           <li>
-            <Link to="/profile">Your profile</Link>
+            <Link className="profileOnNav" to="/profile">Your profile</Link>
+          </li>
+          <li>
+            <Link className="showpostOnNav" to="/showpost">Posts</Link>
           </li>
         </ul>
+        <Link className="LogoutOnNav" to="/logout">Logout</Link>
       </nav>      
-      <div className="setting-wrap">
+      )}
+      {/* <div className="setting-wrap">
         <ul className="setting">
           <li className="setting-icon">
             <i className="fa-solid fa-gear"></i>
@@ -42,7 +47,7 @@ function RoutingLayout(props){
             </ul>
           </li>
         </ul>
-      </div>
+      </div> */}
     </header>
       <Outlet/>
 

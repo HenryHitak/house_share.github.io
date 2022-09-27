@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import globalIP from '../services/globalIp';
 import loginService from '../services/loginService';
 import {FloatingLabel, Form} from 'react-bootstrap';
-import style from '../style/mytemplate.module.css';
+// import style from '../style/mytemplate.module.css';
 function Login(props){    
     const passInput = useRef();
     const [logFlag,setLogin] = useState(false);
@@ -14,26 +14,22 @@ function Login(props){
         event.preventDefault();
         
         const formData = new FormData(event.target);
-        console.log(Ip);
         formData.append('gip',Ip);
         loginService.login(formData)
             .then(response=>{
                 setLogin(true);
                 props.loginFun(response.data);
-                console.log(response.data)
                 sessionStorage.setItem("sid",response.data.sid);
                 setErr(null);
-                // navigate('/yourpost');
+                navigate('/');
             })
             .catch(err=>{
                 setErr(err.response.data);
             });
     }
-
     useEffect(()=>{
         globalIP.getIP().then(data=>{setIp(data)});
     },[]);
-
     const inputFocus = (event)=>{
         if(event.target.innerText == "Show Password"){
             passInput.current.type = "text";
@@ -59,18 +55,23 @@ function Login(props){
     }
     return(
         <>
-            <h1>Login Page</h1>
+        <main className='loginMain'>
+            <h1 className='loginPage'>Login</h1>
             <form onSubmit={(event)=>login(event)}>
-                <FloatingLabel controlId='userLabel' label="Write your username" className='mb-3'>
-                <Form.Control type="email" name="uName" onFocus={(event)=>bgChanger(event)}  onBlur={(event)=>bgChanger(event)} placeholder="Write username" required/>
-                <input type="password" name="pass" ref={passInput} placeholder="Write password" onFocus={(event)=>bgChanger(event)}  onBlur={(event)=>bgChanger(event)} required/>
-                </FloatingLabel>
-                <button type='button' onClick={(event)=>inputFocus(event)}>Show Password</button>
                 
-                
-                <button className={style.mybtn} type="submit">Login</button>
+              
+                <Form.Control className="loginForm" type="email" name="uName" 
+                placeholder="Youremail@email.com" required/>
+                <input className="loginFormPass" type="password" name="pass" ref={passInput} placeholder="Password"  required/>
+             
+                <div className='loginBtnWrap'>
+                <button className="showPassBtn" type='button' onClick={(event)=>inputFocus(event)}>Show Password</button>                
+                <button className="LoginFormBtn" type="submit">Login</button>
+                </div>
             </form>
             {err!==null ? <h1>{err}</h1> : null}
+            </main>
+            
         </>
 
     )

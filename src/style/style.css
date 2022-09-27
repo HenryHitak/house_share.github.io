@@ -1,0 +1,327 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+}
+
+html {
+  height: 100%;
+}
+
+
+.navFooter-body {
+  font-family: 'Noto Sans', sans-serif;
+  height: 100%;
+}
+
+/* NAVIGATION */
+.navFooter-header {
+  z-index: 100;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(255, 255, 255);
+  /* padding-top: 5px; */
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.18);
+  width: 100%;
+}
+
+.whs {
+  font-size: 36px;
+  font-weight: 600;
+  color: #4EA1A5;
+}
+
+.ptagWhs {
+  color: #888888;
+  font-size: 12px;
+}
+
+.logo {
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginOnNav {
+  font-size: 20px;
+  width: 100px;
+  text-align: center;
+  font-weight: 600;
+  color:  #4EA1A5;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-right: 50px;
+}
+
+.loginOnNav:hover {
+  color:  #67b6ba; 
+  transition: 0.3s;
+}
+
+/* blue button hover */
+.LoginFormBtn:hover, .commentBtnSend:hover {
+  color: #fff;
+  transition: 0.3s;
+  background-color: #67b6ba;
+}
+
+
+.navFooter-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 90px;
+}
+
+/* LOGEDIN NAVI */
+
+ .yourPostOnNav, .findPostOnNav, .profileOnNav, .showpostOnNav {
+
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  color: #555;
+  padding: 0  20px;
+}
+.LogoutOnNav {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #d5d5d5;
+  /* border: 1px solid #cdcccc; */
+  margin-left: 120px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.LogoutOnNav:hover {
+background-color: #edecec;
+transition: 0.3s;
+}
+
+ .yourPostOnNav:hover, .findPostOnNav:hover, .profileOnNav:hover, .showpostOnNav:hover {
+  color: #67b6ba;
+  transition: 0.3s;
+}
+
+
+.loggedInNav {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+}
+
+.loggedInNav > ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+
+
+/* FOOTER */
+footer {
+  font-size: 12px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #888888;
+  position: sticky;
+  top: 100vh;
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid #F4F4F4;
+}
+
+#root {
+  min-height: 100vh;
+}
+/* LOGIN PAGE */
+.loginMain {
+  padding-top: 150px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginPage {
+  font-size: 40px;
+  color: #333;
+  font-weight: 600;
+}
+
+.loginForm {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  width: 300px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 21px;
+  letter-spacing: 0.5px;
+  color: #333;
+}
+
+.LoginInputEmail {
+  height: 20px;
+}
+
+
+.loginBtnWrap {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  align-items: center;
+}
+
+.showPassBtn {
+  background-color: #fff;
+  border: none;
+  padding: 20px;
+  color: #555;
+  cursor: pointer;
+}
+
+.LoginFormBtn {
+  font-size: 20px;
+  width: 100px;
+  text-align: center;
+  font-weight: 500;
+  color: #fff;
+  background-color: #4EA1A5;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.loginFormPass {
+  height: 20px;
+  width: 300px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 21px;
+  letter-spacing: 0.5px;
+  color: #333;
+}
+
+/* TextArea */
+.CommentWrap {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  row-gap: 10px;
+  margin-left: 100px;
+}
+
+.CommentTextarea {
+  height: 100px;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.CommentBtnWrap {
+  display: flex;
+  column-gap: 10px;
+  width: 300px;
+  padding-bottom: 50px;
+  justify-content: space-between;
+}
+
+.commentBtnSend {
+  height: 30px;
+  width: 100px;
+  background-color: #4EA1A5;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.commentBtnDelete {
+  height: 30px;
+  width: auto;
+  background-color: #fff;
+  color: #e16e40;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  align-items: center;
+ 
+}
+
+.commentBtnDelete:hover {
+  color: #ef8f6a;;
+  transition: 0.3s;
+}
+
+.postedComment {
+  font-size: 21px;
+}
+
+.commentSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 15px;
+  margin-left: 100px;
+  width: 400px;
+  height: auto;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #FFFFFF;
+  border: 0.5px solid #D9D9D9;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.18);
+  border-radius: 10px;
+}
+
+.commentContentWrap {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+}
+
+.commentDate {
+  color: #888;
+  font-size: 14px;
+
+}
+
+.commentDateWrap {
+  display: flex;
+  justify-content: end;
+}
+
+.profilePageMain {
+  margin-top: 150px;
+}
