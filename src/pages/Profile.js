@@ -7,7 +7,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { createContext, useContext } from 'react';
 
+
 const userContext = createContext();
+
+// function ProfileImg() {
+    
+//     return(
+//         <img src="./img/profile_img/pic-1.jpg" alt="profile"/> 
+//     )
+// }
 
 function ProfileInfo() {
     // COMMENT SECTION START
@@ -19,7 +27,7 @@ function ProfileInfo() {
         if (content === "") return; //if textarea is empty but click send button, disable to post.
 
         setComments((prevComments) => {
-            return [...prevComments, { id: uuidv4(), content: content, delete: false, createdAt: new Date().toLocaleString() }]// to display new added comment next to previous comment
+            return [...prevComments, { id: uuidv4(), content: content, delete: false, createdAt: new Date().toLocaleString() }]// to display new added comment noxt to previous comment
         });
         contentRef.current.value = null;
     };
@@ -29,6 +37,7 @@ function ProfileInfo() {
         const comment = newComments.find((comment) => comment.id === id);
         comment.delete = !comment.delete;
         setComments(newComments);
+
     };
 
     const handleClear = () => {
@@ -37,13 +46,15 @@ function ProfileInfo() {
     };
 
     // COMMENT SECTION END
+    
 
     const loggedUser = useContext(userContext);
+    // const img = require('../img/profile_img/${loggedUser.profImg}');
     return (
         <>
             <main className="profilePageMain">
                 <section className="profileWrap">
-                <img src ={window.location.origin + `/img/profile_img/${loggedUser.profImg}`} />
+                <img src ={window.location.origin + `/img/profile_img/${loggedUser.profImg}`}/>
                 <section className="profileSection">
                     <h1 className="fname">Hi, I'm {loggedUser.firstName}</h1>
                     <div className="badges">
@@ -78,6 +89,7 @@ function Profile(props) {
     return (
         <article className='show-art'>
             <userContext.Provider value={loggedUser}>
+                {/* <ProfileImg/> */}
                 <ProfileInfo />
             </userContext.Provider>
         </article>
