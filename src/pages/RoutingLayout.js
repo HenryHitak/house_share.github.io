@@ -21,13 +21,10 @@ function RoutingLayout(props){
             <Link className="yourPostOnNav" to="/yourpost">Yourpost</Link>
           </li>
           <li>
-            <Link className="findPostOnNav" to="/findpost">Find Share house</Link>
+            <Link className="findPostOnNav" to="/showpost">Find Share house</Link>
           </li>
           <li>
             <Link className="profileOnNav" to="/profile">Your profile</Link>
-          </li>
-          <li>
-            <Link className="showpostOnNav" to="/showpost">Posts</Link>
           </li>
         </ul>
         <Link className="LogoutOnNav" to="/logout">Logout</Link>

@@ -19,7 +19,7 @@ function ProfileInfo() {
         if (content === "") return; //if textarea is empty but click send button, disable to post.
 
         setComments((prevComments) => {
-            return [...prevComments, { id: uuidv4(), content: content, delete: false, createdAt: new Date().toLocaleString() }]// to display new added comment noxt to previous comment
+            return [...prevComments, { id: uuidv4(), content: content, delete: false, createdAt: new Date().toLocaleString() }]// to display new added comment next to previous comment
         });
         contentRef.current.value = null;
     };
@@ -29,7 +29,6 @@ function ProfileInfo() {
         const comment = newComments.find((comment) => comment.id === id);
         comment.delete = !comment.delete;
         setComments(newComments);
-
     };
 
     const handleClear = () => {

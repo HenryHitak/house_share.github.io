@@ -21,7 +21,7 @@ function Login(props){
                 props.loginFun(response.data);
                 sessionStorage.setItem("sid",response.data.sid);
                 setErr(null);
-                navigate('/');
+                navigate('/yourpost');
             })
             .catch(err=>{
                 setErr(err.response.data);

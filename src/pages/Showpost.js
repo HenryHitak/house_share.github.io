@@ -10,11 +10,11 @@ import MultipleImageUploadComponent from '../components/multiple-image-upload.co
 function Tables(props){
   const post = props.post; 
   const index = props.number;
-  const url = '../img/post_img/'.post;
+
   return(
       <aside className="show-aside">
         <figure className="show-fig">
-          <img className="showimg" src ='#' alt='img'/>
+          <img className="showimg" src={window.location.origin + `/img/post_img/${post.imgName}`}  alt={`${post.imgName}`}/>
         </figure>
         <div className="showcontent">
           <h1 className="show-h1">{post.title}</h1>
@@ -31,7 +31,6 @@ function Tables(props){
   function Details(props){
     const post = props.post; 
     const [postuser, setPostUser] = useState({});
-    const url = '../img/post_img/'.post;
  
     useEffect(()=>{
       console.log(post['user_id']);
@@ -49,7 +48,7 @@ function Tables(props){
     <>
       <aside className="show-aside">
         <figure className="show-fig">
-          <img className="showimg" src ='#' alt='img'/>
+          <img className="showimg" src ={window.location.origin + `/img/post_img/${post.imgName}`} alt='img'/>
         </figure>
         <div className="showcontent">
           <h1 className="show-h1">{post.title}</h1>
@@ -59,7 +58,7 @@ function Tables(props){
       </aside>
       <aside className="show-aside">
         <figure className="show-fig">
-          <img className="showimg" src ='#' alt='img'/>
+          <img className="showimg" src ={window.location.origin + `/img/profile_img/${postuser.profImg}`} alt={postuser.profImg}/>
         </figure>
         <div className="showcontent">
           <h2>{postuser.lastName}</h2>
