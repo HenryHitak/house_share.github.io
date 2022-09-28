@@ -1,6 +1,6 @@
 <?php
   include './config.php';
-  header("Access-Control-Allow-Origin:http://localhost:3000");
+  // header("Access-Control-Allow-Origin:http://localhost:3000");
 
   // if($_SESSION['timeout'] < time()){
   //   header("Location: http://localhost/fproject/pages/loginCon.php");

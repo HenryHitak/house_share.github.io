@@ -4,7 +4,7 @@ $dbServerName = "localhost";
 $dbPass = "";
 $dbName = "final_db"; 
 
-header("Access-Control-Allow-Origin:http://localhost:3000");
+header("Access-Control-Allow-Origin:http://localhost:3001");
   // $dbCon = new mysqli($dbServername,$dbUsername,$dbPass,$dbname);
   // if($dbCon->connect_error){
   //   die('connection error');

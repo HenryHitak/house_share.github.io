@@ -232,14 +232,15 @@ footer {
 .CommentWrap {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 400px;
   row-gap: 10px;
-  margin-left: 100px;
+  /* margin-left: 100px; */
 }
 
 .CommentTextarea {
   height: 100px;
-  width: 100%;
+  width: 95%;
+  resize: none;
   padding: 10px;
   font-size: 18px;
   color: #333;
@@ -292,7 +293,7 @@ footer {
   flex-direction: row;
   align-items: center;
   column-gap: 15px;
-  margin-left: 100px;
+  /* margin-left: 100px; */
   width: 400px;
   height: auto;
   padding: 20px;
@@ -324,4 +325,51 @@ footer {
 
 .profilePageMain {
   margin-top: 150px;
+  width: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* row-gap: 5vh; */
+  justify-content: center;
+  align-items: center;
+  padding-top: 5vh;
+}
+
+.profileWrap {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5vh;
+}
+
+.profileSection {
+  display: flex;
+  flex-direction: column;
+  padding: 3vh;
+  row-gap: 10vh;
+}
+
+.fname {
+  font-size: 30px;
+}
+
+.badges {
+  display: flex;
+  flex-direction: row;
+  column-gap: 3vh;
+}
+
+.badge {
+  text-transform: uppercase;
+  font-weight: 500;
+  background-color: #4EA1A5;
+  border: 0px;
+  color: white;
+  padding: 1vh 2vh;
+  border-radius: 1vh;
+
+}
+
+.paragraph {
+  text-align: center;
+  padding-top: 10vh;
+  padding-bottom: 15vh;
 }

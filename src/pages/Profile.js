@@ -42,16 +42,19 @@ function ProfileInfo() {
     return (
         <>
             <main className="profilePageMain">
-                <img src="./img/profile_img/{loggeduser.profimg}" />
-                <h1>Hi, I'm {loggedUser.firstName}</h1>
-                <div>
-                    {loggedUser.atype === 'student' ? <button type="button">Student</button> : loggedUser.atype === 'landlord' ? <button type="button">Landlord</button> : null}
-                </div>
-                <div>
-                    {loggedUser.badge1 === 'waiting' ? <button type='button'>Waiting</button> : loggedUser.badge1 === 'varified' ? <button type='button'>Verified</button> : null}
-                    {loggedUser.badge2 === 'waiting' ? <button type='button'>Waiting</button> : loggedUser.badge2 === 'varified' ? <button type='button'>Verified</button> : null}
-                </div>
-                <p>{loggedUser.profileContent}</p>
+                <section className="profileWrap">
+                <img src ={window.location.origin + `/img/profile_img/${loggedUser.profImg}`} />
+                <section className="profileSection">
+                    <h1 className="fname">Hi, I'm {loggedUser.firstName}</h1>
+                    <div className="badges">
+                        {loggedUser.atype === 'student' ? <button className="aBadge" type="button">Student</button> : loggedUser.atype === 'landlord' ? <button type="button">Landlord</button> : null}
+                    
+                        {loggedUser.badge1 === 'waiting' ? <button className="badge" type='button'>Waiting</button> : loggedUser.badge1 === 'varified' ? <button type='button'>Verified</button> : null}
+                        {loggedUser.badge2 === 'waiting' ? <button className="badge" type='button'>Waiting</button> : loggedUser.badge2 === 'varified' ? <button type='button'>Verified</button> : null}
+                    </div>
+                </section>
+                </section>
+                <p className="paragraph">{loggedUser.profileContent}</p>
 
                 {/* COMMENT SECTION START */}
                 <div className="CommentWrap">
