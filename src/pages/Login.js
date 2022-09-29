@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import globalIP from '../services/globalIp';
 import loginService from '../services/loginService';
 import {FloatingLabel, Form} from 'react-bootstrap';
-// import style from '../style/mytemplate.module.css';
+
 function Login(props){    
     const passInput = useRef();
     const [logFlag,setLogin] = useState(false);
@@ -61,11 +61,11 @@ function Login(props){
                 
               
                 <Form.Control className="loginForm" type="email" name="uName" 
-                placeholder="youremail@email.com" required/>
+                placeholder="youremail@woodhousing.com" required/>
                 <input className="loginFormPass" type="password" name="pass" ref={passInput} placeholder="Password"  required/>
              
                 <div className='loginBtnWrap'>
-                <button className="showPassBtn" type='button' onClick={(event)=>inputFocus(event)}>Show Password</button>                
+                <button className="showPassBtn" type='button' onClick={(event)=>inputFocus(event)}>Show Password</button>              
                 <button className="LoginFormBtn" type="submit">Login</button>
                 </div>
             </form>

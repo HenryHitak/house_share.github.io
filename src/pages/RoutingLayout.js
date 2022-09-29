@@ -7,12 +7,27 @@ function RoutingLayout(props){
   return (
   <>
     <header className="navFooter-header">
+    { loggedUser =="" ?  (
         <div className="logo">
+        <Link to="/">
           <h1 className="whs">WHS<FontAwesomeIcon icon={faHouse} /></h1>
           <p className="ptagWhs">Wood Housing Solution</p>
-      </div>
+           </Link>
+      </div>) : (
+         <div className="logo">
+         <Link to="/yourpost">
+           <h1 className="whs">WHS<FontAwesomeIcon icon={faHouse} /></h1>
+           <p className="ptagWhs">Wood Housing Solution</p>
+            </Link>
+       </div>
+
+      )}
+     
       { loggedUser =="" ? (
-       <Link to="/login" className="loginOnNav">Login</Link>
+        <div className="NavBtn">
+       <Link to="/" className="loginOnNav">Login</Link>
+       <Link to="/register" className="SignUpOnNav">Sign Up</Link>
+       </div>
       ) : (
       <nav className="loggedInNav">
       

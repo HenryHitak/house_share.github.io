@@ -1,6 +1,8 @@
 import HttpCommon from "../services/http-common";
 import { useEffect, useState} from "react";
 import YourInfoSrv from "../services/yourinfo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import  {  faClock } from "@fortawesome/free-solid-svg-icons";
 
 function Tables(props){
   const post = props.post; 
@@ -12,7 +14,7 @@ function Tables(props){
         </figure>
         <div className="showcontent">
           <h1 className="show-h1">{post.title}</h1>
-          <time className="showtime">{post.p_date}</time>
+          <time className="showtime"><FontAwesomeIcon icon={  faClock }/>{post.p_date}</time>
           <p className="showp">{post.postContent}</p>
         {/* <form className="showform">
           <button className="showbutton" type="submit" onClick={()=>props.postdetail(index)}> See Detail</button>
