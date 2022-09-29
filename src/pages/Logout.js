@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 function Logout(props){   
-    props.logoutFun();
-    const navigate = useNavigate();
+    props.logoutFun('');
+    const navigate = useNavigate('');
     sessionStorage.removeItem("sid");
-    navigate('/');
+    useEffect(()=>{navigate('/login')},[]);
 }
 export default Logout;

@@ -19,6 +19,7 @@ function Login(props){
             .then(response=>{
                 setLogin(true);
                 props.loginFun(response.data);
+                // console.log(response.data)
                 sessionStorage.setItem("sid",response.data.sid);
                 setErr(null);
                 navigate('/yourpost');
@@ -27,9 +28,11 @@ function Login(props){
                 setErr(err.response.data);
             });
     }
+
     useEffect(()=>{
         globalIP.getIP().then(data=>{setIp(data)});
     },[]);
+
     const inputFocus = (event)=>{
         if(event.target.innerText == "Show Password"){
             passInput.current.type = "text";
@@ -55,14 +58,11 @@ function Login(props){
     }
     return(
         <>
-        <main className='loginMain'>
+        <div className='loginMain'>
             <h1 className='loginPage'>Login</h1>
             <form onSubmit={(event)=>login(event)}>
-                
-              
-                <Form.Control className="loginForm" type="email" name="uName" 
-                placeholder="Youremail@email.com" required/>
-                <input className="loginFormPass" type="password" name="pass" ref={passInput} placeholder="Password"  required/>
+                <Form.Control className="loginForm" type="email" name="uName" placeholder="Youremail@email.com" onFocus={(event)=>bgChanger(event)}  onBlur={(event)=>bgChanger(event)} required/>
+                <input className="loginFormPass" type="password" name="pass" ref={passInput} placeholder="Password" onFocus={(event)=>bgChanger(event)}  onBlur={(event)=>bgChanger(event)} required/>
              
                 <div className='loginBtnWrap'>
                 <button className="showPassBtn" type='button' onClick={(event)=>inputFocus(event)}>Show Password</button>                
@@ -70,7 +70,7 @@ function Login(props){
                 </div>
             </form>
             {err!==null ? <h1>{err}</h1> : null}
-            </main>
+            </div>
             
         </>
 

@@ -12,13 +12,16 @@ function RoutingLayout(props){
           <p className="ptagWhs">Wood Housing Solution</p>
       </div>
       { loggedUser =="" ? (
+        <div className="logio">        
        <Link to="/login" className="loginOnNav">Login</Link>
+      <Link to="/register" className="loginOnNav">Signup</Link>
+        </div>
       ) : (
       <nav className="loggedInNav">
       
         <ul>
           <li>
-            <Link className="yourPostOnNav" to="/yourpost">Yourpost</Link>
+            <Link className="yourPostOnNav" to="/yourpost">Your post</Link>
           </li>
           <li>
             <Link className="findPostOnNav" to="/showpost">Find Share house</Link>

@@ -17,14 +17,13 @@ import { useNavigate } from 'react-router-dom';
 export default function MainApp(){
     const [user,setUser] = useState('');
     //change
-    const loginFunction = (userInput) =>{
-        setUser(userInput);
-        console.log(user);
+    const LoginFunction = (userInput) =>{
+      setUser(userInput);
     };
 
-    const logoutFunction = () =>{
-      setUser('');
-    }
+    const LogoutFunction = () =>{
+      useEffect(()=>{setUser('')},[]);
+  }
     const pageLoad = ()=>{
         let sid = sessionStorage.getItem("sid");
         // console.log(sid);
@@ -37,20 +36,21 @@ export default function MainApp(){
                 .catch(err=>{console.log(err)});
       }
     };
-    useEffect(()=>{pageLoad()},[user]);
+    useEffect(()=>{pageLoad()},[]);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<RoutingLayout loggedUser={user}/>}>
         {/* homepage replacement*/}
-          <Route  index  element = { <Login loginFun={loginFunction}/>}/>
+          <Route  index  element = { <Login loginFun={LoginFunction}/>}/>
+          <Route path="login" element = {<Login loginFun={LoginFunction}/>}/>
           <Route path="yourpost" element={<Yourpost loggedUser={user}/>}/>
-          <Route path="logout" element = {<Logout loggedUser={user} logoutFun={logoutFunction}/>}/>
+          <Route path="logout" element = {<Logout loggedUser={user} logoutFun={LogoutFunction}/>}/>
           <Route path="profile" element = { <Profile loggedUser={user} />}/>
           <Route path="register" element = {<Register loggedUser={user}/>}/>
           <Route path="showpost" element = {<Showpost loggedUser={user}/>}/>
-          <Route path="findpost" element = {<Findpost loggedUser={user}/>}/>
+          {/* <Route path="findpost" element = {<Findpost loggedUser={user}/>}/> */}
           <Route path="*" element = { <Nopage/>}/>
         </Route>
       </Routes>

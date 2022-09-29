@@ -1,6 +1,5 @@
 <?php
   include './config.php';
-  header("Access-Control-Allow-Origin:http://localhost:3000");
 
 $dbCon = new mysqli($dbServerName,$dbUserName,$dbPass,$dbName);
   if($dbCon->connect_error){
