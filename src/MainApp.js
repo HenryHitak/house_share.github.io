@@ -9,6 +9,9 @@ import Register from "./pages/Register";
 import Logout from "./pages/Logout";
 import Profile from "./pages/Profile"
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import  { faHouse } from "@fortawesome/free-solid-svg-icons";
+
 import $, { data } from 'jquery';
 import Fileupload from './pages/Fileupload';
 import userInfoSrv from './services/userInfoSrv';

@@ -3,9 +3,21 @@ import { Link } from 'react-router-dom';
 import react, { useState, useEffect } from "react";
 import React, { Component } from 'react';
 import YourInfoSrv from "../services/yourinfo";
-import '../App.css';
+import comSendsrv from "../services/comSendsrv";
+
 import SingleImageUploadComponent from '../components/single-image-upload.component';
 import MultipleImageUploadComponent from '../components/multiple-image-upload.component';
+
+//FOR COMMENT SECTION
+import { useRef } from "react";
+import Commentpost from "./Commentpost";
+import { v4 as uuidv4 } from "uuid";//This is for applying unique Id to comment
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import  { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import  {  faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+import  {  faHouse } from "@fortawesome/free-solid-svg-icons";
+import  {  faClock } from "@fortawesome/free-solid-svg-icons";
+import  {  faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 
 function Tables(props){
   const post = props.post; 
@@ -18,10 +30,10 @@ function Tables(props){
         </figure>
         <div className="showcontent">
           <h1 className="show-h1">{post.title}</h1>
-          <time className="showtime">{post.p_date}</time>
+          <time className="showtime"><FontAwesomeIcon icon={  faClock }/>{post.p_date}</time>
           <p className="showp">{post.postContent}</p>
         <form className="showform">
-          <button className="showbutton" type="button" onClick={()=>props.postdetail(index)}>See Detail</button>
+          <button className="showbutton" type="button" onClick={()=>props.postdetail(index)}>See Detail<FontAwesomeIcon icon={  faAnglesRight }/></button>
         </form>
         </div>
       </aside>
@@ -46,33 +58,110 @@ function Tables(props){
 
   return(
     <>
-      <aside className="show-aside">
-        <figure className="show-fig">
-          <img className="showimg" src ={window.location.origin + `/img/post_img/${post.imgName}`} alt='img'/>
+      <aside className="show-aside-detail">
+        <figure className="show-fig-detail">
+        <h1 className="show-h1-detail">{post.title}</h1>
+          <img className="showimg-detail" src ={window.location.origin + `/img/post_img/${post.imgName}`} alt='img'/>
         </figure>
-        <div className="showcontent">
-          <h1 className="show-h1">{post.title}</h1>
-          <time className="showtime">{post.p_date}</time>
-          <p className="showp">{post.postContent}</p>
+        <div className="showcontent-detail">
+         
+          <time className="showtime-detail"><FontAwesomeIcon icon={  faClock }/>{post.p_date}</time>
+          <p className="showp-detail">{post.postContent}</p>
         </div>
       </aside>
-      <aside className="show-aside">
-        <figure className="show-fig">
-          <img className="showimg" src ={window.location.origin + `/img/profile_img/${postuser.profImg}`} alt={postuser.profImg}/>
+      <div className="showcontent-detail-profile-wrap">
+      <h3 className="postedby">Posted by</h3>
+      <div className="showcontent-detail-profile-wrap2">
+      <aside className="show-aside-detail-profile">
+        <figure className="show-fig-detail-profile">
+          <img className="showimg-detail-profile" src ={window.location.origin + `/img/profile_img/${postuser.profImg}`} alt={postuser.profImg}/>
         </figure>
-        <div className="showcontent">
-          <h2>{postuser.lastName}</h2>
-          {postuser.atype === 'landlord' ? <h2>landlord</h2> : <h2>Student</h2> }
+       
+        <div className="showcontent-detail-profile">
+     
+          <h3 className="showcontent-detail-profile-name">{postuser.firstName} {postuser.lastName}</h3>
+          {postuser.atype === 'landlord' ? <h4 className="showcontent-detail-profile-landlord"><FontAwesomeIcon icon={  faHouse }/> Landlord</h4> : <h4 className="showcontent-detail-profile-student"><FontAwesomeIcon icon={  faGraduationCap }/> Student</h4> }
         </div>
+        
       </aside>
+      </div>
+      </div>
     </>
   )
   }
 
+
+
+      // COMMENT SECTION START
+      function CommentSection(props) {
+        const post = props.post;
+        const[commentData, setCommentData] =useState('');
+        const [comments, setComments] = useState([]);
+        const contentRef = useRef(); 
+        const handleAddComment = () => {
+            const content = contentRef.current.value;
+            if (content === "") return;      
+            setComments((prevComments) => {
+                return [...prevComments, { id: uuidv4(), content: content, delete: false, createdAt: new Date().toLocaleString() }]// to display new added comment noxt to previous comment
+            });
+            contentRef.current.value = null;
+
+            const sid = sessionStorage.getItem('sid');
+            const comdata = new FormData();
+            comdata.append('postid',post.post_id);
+            comdata.append('comment',commentData);
+            comdata.append('sid',sid);
+            console.log(comdata);
+            comSendsrv.send(comdata)
+            .then(response=>{
+                console.log(response);
+            })
+            .catch(err=>{console.log(err)})
+        };
+      
+        const toggleDelete = (id) => {
+            const newComments = [...comments];
+            const comment = newComments.find((comment) => comment.id === id);
+            comment.delete = !comment.delete;
+            setComments(newComments);
+      
+        };
+      
+        const handleClear = () => {
+            const newComments = comments.filter((comment) => !comment.delete);
+            setComments(newComments)
+        };
+
+        const ChgHandler =(event)=>{
+          const content = event.target.value
+          console.log(content);
+          setCommentData(content);
+      }
+      
+        return (
+            <>
+                < div className="CommentSectionWrap" >
+                < div className="CommentWrap" >
+                    <h3 className="CommentTitle">Comment</h3>
+                    <textarea className="CommentTextarea" ref={contentRef} onChange={(e)=>ChgHandler(e)}/>
+                    <div className="CommentBtnWrap">
+                        <button className="commentBtnSend" onClick={handleAddComment}>Send</button>
+                        <button className="commentBtnDelete" onClick={handleClear}><FontAwesomeIcon icon={faTrashCan} />Delete selected comment</button>
+                    </div>
+              
+                <Commentpost comments={comments} toggleDelete={toggleDelete} />
+                </div >
+                </div >
+            </>
+        );
+      
+      }
+
+      
+
 function Showpost(props){
   const[postList,setPostlist] = useState([]);
   const [postdetail,setPostdetail] = useState({});
-  // const [search, setSearch] = useState('');
   const [flag, setFlag] = useState('false');
   useEffect(()=>{
     HttpCommon.get('/showpost.php')
@@ -91,19 +180,8 @@ function Showpost(props){
     setFlag('true');
   }
 
-  // const ChgHandler =()=>{
-  //   useEffect(()=>{
-  //     HttpCommon.post('/showpost.php')
-  //       .detail((response)=>)
-  //   })
-  // }
-
   return(
     <>
-      <form>
-        <input />
-        <button type="submit">Search</button>
-      </form>
       { flag === 'false' ? 
       <article className="show-art">
         {postList.map((val,idx)=>{
@@ -115,6 +193,7 @@ function Showpost(props){
         :
       <article className="show-art"> 
         <Details post = {postdetail} /> 
+        <CommentSection post={postdetail}/>
       </article>
       }
     </>

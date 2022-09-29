@@ -1,4 +1,8 @@
 import React from 'react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import  {  faClock } from "@fortawesome/free-solid-svg-icons";
+
+
 
 export const Comment = ({ comment, toggleDelete }) => {
   const handleDeleteClick = () => {
@@ -15,6 +19,7 @@ export const Comment = ({ comment, toggleDelete }) => {
         <div className='commentContentWrap'>
           <div className='commentDateWrap'>
             <div className='commentDate'>
+            <FontAwesomeIcon icon={  faClock }/>
               {comment.createdAt}
             </div>
           </div>
