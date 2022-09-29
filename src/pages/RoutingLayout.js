@@ -18,7 +18,7 @@ function RoutingLayout(props){
       
         <ul>
           <li>
-            <Link className="yourPostOnNav" to="/yourpost">Yourpost</Link>
+            <Link className="yourPostOnNav" to="/yourpost">Your post</Link>
           </li>
           <li>
             <Link className="findPostOnNav" to="/showpost">Find Share house</Link>

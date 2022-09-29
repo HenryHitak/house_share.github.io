@@ -34,7 +34,7 @@ function ProfileInfo() {
 
             {/* VOTE SECTION */}
             <div className="vote-wrap">
-                <h2 className="Vh2">Badeges from Students / Landlord</h2>
+                <h2 className="Vh2">Badeges from Students / Landlords</h2>
                 <div className="vote-wrap2">
                     <div className="vote">
                         <p className="vote-num">{loggedUser.res}</p>
