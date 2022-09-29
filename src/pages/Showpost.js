@@ -72,6 +72,7 @@ function Tables(props){
 function Showpost(props){
   const[postList,setPostlist] = useState([]);
   const [postdetail,setPostdetail] = useState({});
+  // const [search, setSearch] = useState('');
   const [flag, setFlag] = useState('false');
   useEffect(()=>{
     HttpCommon.get('/showpost.php')
@@ -90,8 +91,19 @@ function Showpost(props){
     setFlag('true');
   }
 
+  // const ChgHandler =()=>{
+  //   useEffect(()=>{
+  //     HttpCommon.post('/showpost.php')
+  //       .detail((response)=>)
+  //   })
+  // }
+
   return(
     <>
+      <form>
+        <input />
+        <button type="submit">Search</button>
+      </form>
       { flag === 'false' ? 
       <article className="show-art">
         {postList.map((val,idx)=>{
