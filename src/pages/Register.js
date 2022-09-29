@@ -1,3 +1,8 @@
+function Register(){
+
+}
+export default Register;
+
 import axios from "axios";
 import { useState } from "react";
 import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";

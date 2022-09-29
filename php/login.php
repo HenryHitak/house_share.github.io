@@ -1,8 +1,8 @@
 <?php
 header("Access-Control-Allow-Origin:http://localhost:3000");
 
+include './config.php';
 
-    include './config.php';
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         session_start();
         $username = $_POST['uName'];
@@ -32,7 +32,6 @@ header("Access-Control-Allow-Origin:http://localhost:3000");
                             $user['sid'] = session_id();
                             echo json_encode($user);
                             exit();
-
                         }
                         else{
                             header("status-Text: username/password is wrong",true,401);

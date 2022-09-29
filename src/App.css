@@ -15,6 +15,24 @@
 .multi-preview img {
   max-width: 100px;
   padding: 5px;
+
+
+.card {
+  margin: 50px 0 0;
+}
+
+.form-control {
+  padding: .375rem 0;
+  border: none;
+}
+
+.preview img {
+  max-width: 100px;
+}
+
+.multi-preview img {
+  max-width: 100px;
+  padding: 5px;
 }
 .app {
   margin: 50px;
