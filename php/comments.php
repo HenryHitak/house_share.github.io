@@ -9,8 +9,12 @@
      session_start();
      $user = $_SESSION['user'];
      $userid = $user['user_id'];
+     $time = time();
+    
+     $comment = $_POST['comment'];
+     echo $comment;
 
-     $updCmd = "INSERT INTO comment_tb() VALUES ()";
+     $updCmd = "INSERT INTO `comments_tb`( `message`, `user_id`, `p_date`) VALUES ('$comment','$userid','time()')";
      $result = $dbCon->query($updCmd);
      if($result === true){
       echo json_encode($user);

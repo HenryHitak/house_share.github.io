@@ -6,22 +6,22 @@ import { v4 as uuidv4 } from "uuid";//This is for applying unique Id to comment
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { createContext, useContext } from 'react';
+import CardHeader from "react-bootstrap/esm/CardHeader";
 
 
 const userContext = createContext();
 
-// function ProfileImg() {
-    
-//     return(
-//         <img src="./img/profile_img/pic-1.jpg" alt="profile"/> 
-//     )
-// }
-
 function ProfileInfo() {
     // COMMENT SECTION START
 
+    const[commentData, setCommentData] =useState('');
     const [comments, setComments] = useState([]);
     const contentRef = useRef(); //To get value inside of textarea
+    const[value1,setValue1] = useState(0);
+    const[value2,setValue2] = useState(0);
+    const[value3,setValue3] = useState(0);
+    const [count, setCount] = useState(0);
+
     const handleAddComment = () => {
         const content = contentRef.current.value;
         if (content === "") return; //if textarea is empty but click send button, disable to post.
@@ -45,11 +45,15 @@ function ProfileInfo() {
         setComments(newComments)
     };
 
+    const ChgHandler =(event)=>{
+        setCommentData(event.target.value);
+    }
+
     // COMMENT SECTION END
     
 
     const loggedUser = useContext(userContext);
-    // const img = require('../img/profile_img/${loggedUser.profImg}');
+  
     return (
         <>
             <main className="profilePageMain">
@@ -67,14 +71,31 @@ function ProfileInfo() {
                 </section>
                 <p className="paragraph">{loggedUser.profileContent}</p>
 
+                <div className="vote-wrap">
+                    <div className="vote">
+                        <button className="vote-icon" onClick={()=>setValue1(value1 + 1)}>heart</button>
+                        <p className="vote-num">{value1}</p>
+                    </div>
+                    <div className="vote">
+                        <button className="vote-icon" onClick={()=>setValue2(value2 + 1)}>heart</button>
+                        <p className="vote-num">{value2}</p>
+                    </div>
+                    <div className="vote">
+                        <button className="vote-icon" onClick={()=>setValue3(value3 + 1)}>heart</button>
+                        <p className="vote-num">{value3}</p>
+                    </div>
+                </div>
+                
+
                 {/* COMMENT SECTION START */}
                 <div className="CommentWrap">
                     <h3 className="CommentTitle">Comment</h3>
-                    <textarea className="CommentTextarea" ref={contentRef} />
+                    <textarea className="CommentTextarea" ref={contentRef}name='comment' onChange={(e)=>CardHeader(e)}/>
                     <div className="CommentBtnWrap">
-                        <button className="commentBtnSend" onClick={handleAddComment}>Send</button>
+                        <button type="submit" className="commentBtnSend" onClick={handleAddComment}>Send</button>
                         <button className="commentBtnDelete" onClick={handleClear}><FontAwesomeIcon icon={faTrashCan} />Delete selected comment</button>
                     </div>
+                    {/* </form> */}
                 </div>
                 <Commentpost comments={comments} toggleDelete={toggleDelete} />
             </main>
@@ -89,7 +110,6 @@ function Profile(props) {
     return (
         <article className='show-art'>
             <userContext.Provider value={loggedUser}>
-                {/* <ProfileImg/> */}
                 <ProfileInfo />
             </userContext.Provider>
         </article>
