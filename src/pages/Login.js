@@ -55,13 +55,13 @@ function Login(props){
     }
     return(
         <>
-        <main className='loginMain'>
+        <div className='loginMain'>
             <h1 className='loginPage'>Login</h1>
             <form onSubmit={(event)=>login(event)}>
                 
               
                 <Form.Control className="loginForm" type="email" name="uName" 
-                placeholder="Youremail@email.com" required/>
+                placeholder="youremail@email.com" required/>
                 <input className="loginFormPass" type="password" name="pass" ref={passInput} placeholder="Password"  required/>
              
                 <div className='loginBtnWrap'>
@@ -70,7 +70,7 @@ function Login(props){
                 </div>
             </form>
             {err!==null ? <h1>{err}</h1> : null}
-            </main>
+            </div>
             
         </>
 

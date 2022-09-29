@@ -5,20 +5,47 @@ import { v4 as uuidv4 } from "uuid";//This is for applying unique Id to comment
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import  {  faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+import  {  faHouse } from "@fortawesome/free-solid-svg-icons";
 import { createContext, useContext } from 'react';
 
 
 const userContext = createContext();
 
 // function ProfileImg() {
-    
+
 //     return(
 //         <img src="./img/profile_img/pic-1.jpg" alt="profile"/> 
 //     )
 // }
 
 function ProfileInfo() {
-    // COMMENT SECTION START
+    const loggedUser = useContext(userContext);
+    // const img = require('../img/profile_img/${loggedUser.profImg}');
+    return (
+        <>
+            <section className="profileWrap">
+                <img className="profile-page-img"src={window.location.origin + `/img/profile_img/${loggedUser.profImg}`} />
+                <section className="profileSection">
+                    <h1 className="fname">Hi, I'm {loggedUser.firstName} {loggedUser.lastName}</h1>
+                    <div className="badges">
+                        {loggedUser.atype === 'student' ? <button className="aBadge" type="button"><FontAwesomeIcon icon={  faGraduationCap }/>Student</button> : loggedUser.atype === 'landlord' ? <button type="button"><FontAwesomeIcon icon={  faHouse }/> Landlord</button> : null}
+
+                        {loggedUser.badge1 === 'waiting' ? <button className="badgeW" type='button'>Waiting</button> : loggedUser.badge1 === 'verified' ? <button className="badgeV1" type='button'>Verified</button> : null}
+                        {loggedUser.badge2 === 'waiting' ? <button className="badgeW" type='button'>Waiting</button> : loggedUser.badge2 === 'verified' ? <button className="badgeV2" type='button'>Verified</button> : null}
+                    </div>
+                </section>
+            </section>
+            <p className="paragraph">{loggedUser.profileContent}</p>
+
+
+
+        </>
+    )
+}
+
+// COMMENT SECTION START
+function CommentSection() {
 
     const [comments, setComments] = useState([]);
     const contentRef = useRef(); //To get value inside of textarea
@@ -45,54 +72,44 @@ function ProfileInfo() {
         setComments(newComments)
     };
 
-    // COMMENT SECTION END
-    
 
-    const loggedUser = useContext(userContext);
-    // const img = require('../img/profile_img/${loggedUser.profImg}');
     return (
         <>
-            <main className="profilePageMain">
-                <section className="profileWrap">
-                <img src ={window.location.origin + `/img/profile_img/${loggedUser.profImg}`}/>
-                <section className="profileSection">
-                    <h1 className="fname">Hi, I'm {loggedUser.firstName}</h1>
-                    <div className="badges">
-                        {loggedUser.atype === 'student' ? <button className="aBadge" type="button">Student</button> : loggedUser.atype === 'landlord' ? <button type="button">Landlord</button> : null}
-                    
-                        {loggedUser.badge1 === 'waiting' ? <button className="badge" type='button'>Waiting</button> : loggedUser.badge1 === 'varified' ? <button type='button'>Verified</button> : null}
-                        {loggedUser.badge2 === 'waiting' ? <button className="badge" type='button'>Waiting</button> : loggedUser.badge2 === 'varified' ? <button type='button'>Verified</button> : null}
-                    </div>
-                </section>
-                </section>
-                <p className="paragraph">{loggedUser.profileContent}</p>
-
-                {/* COMMENT SECTION START */}
-                <div className="CommentWrap">
+            {/* COMMENT SECTION START */}
+            < div className="CommentSectionWrap" >
+                < div className="CommentWrap" >
                     <h3 className="CommentTitle">Comment</h3>
                     <textarea className="CommentTextarea" ref={contentRef} />
                     <div className="CommentBtnWrap">
                         <button className="commentBtnSend" onClick={handleAddComment}>Send</button>
                         <button className="commentBtnDelete" onClick={handleClear}><FontAwesomeIcon icon={faTrashCan} />Delete selected comment</button>
                     </div>
-                </div>
-                <Commentpost comments={comments} toggleDelete={toggleDelete} />
-            </main>
-            {/* COMMENT SECTION END */}
+                 
 
+                    <Commentpost comments={comments} toggleDelete={toggleDelete} />
+                </div >
+            </div >
+            {/* COMMENT SECTION END */}
         </>
-    )
+    );
+
 }
+// COMMENT SECTION END
+
 
 function Profile(props) {
     const loggedUser = props.loggedUser;
     return (
-        <article className='show-art'>
-            <userContext.Provider value={loggedUser}>
-                {/* <ProfileImg/> */}
-                <ProfileInfo />
-            </userContext.Provider>
-        </article>
+        <>
+            <article className='show-art'>
+                <userContext.Provider value={loggedUser}>
+                    {/* <ProfileImg/> */}
+                    <ProfileInfo />
+                </userContext.Provider>
+                <CommentSection />
+            </article>
+           
+        </>
     )
 }
 
